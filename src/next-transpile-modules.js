@@ -67,6 +67,10 @@ const createWebpackMatcher = (modulesToTranspile, logger = createLogger(false)) 
   ]);
 
   return (filePath) => {
+    if (!filePath) {
+     logger('FilePath was undefined!');
+     return; 
+    }
     const nodeModulesDepth = (filePath.match(/node_modules/g) || []).length;
 
     return modulePathsWithDepth.some(([modulePath, moduleDepth]) => {
